@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>navbar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style type="text/tailwindcss">
+        .nav-item {
+            @apply w-24 p-1 bg-cyan-800 rounded-md text-center cursor-pointer;          
+        }
+      </style>
+</head>
+
+<body class="bg-gray-800 text-white">
+    <nav class="flex justify-between p-2 bg-cyan-950 items-center">
+        <ul class="p-2 mx-2 font-bold bg-cyan-800 rounded-md">
+            GK
+        </ul>
+        <ul class="flex gap-4 w-full justify-end">
+            <li class="nav-item">home</li>
+            <li class="nav-item">contact</li>
+            <li class="nav-item">sign up</li>
+            <li class="nav-item">sign in</li>
+            <li class="nav-item">sign out</li>
+        </ul>
+    </nav>
+</body>
+
+</html>
