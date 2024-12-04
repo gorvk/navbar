@@ -1,31 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>navbar</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <style type="text/tailwindcss">
+            .nav, .side-nav {
+                @apply flex p-2 bg-cyan-950;
+            }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>navbar</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style type="text/tailwindcss">
-        .nav-item {
-            @apply w-24 p-1 bg-cyan-800 rounded-md text-center cursor-pointer;          
-        }
-      </style>
-</head>
+            .nav-item, .side-nav-item, button {
+                @apply p-1 bg-cyan-800 rounded-md text-center cursor-pointer;          
+            }
 
-<body class="bg-gray-800 text-white">
-    <nav class="flex justify-between p-2 bg-cyan-950 items-center">
-        <ul class="p-2 mx-2 font-bold bg-cyan-800 rounded-md">
-            GK
-        </ul>
-        <ul class="flex gap-4 w-full justify-end">
-            <li class="nav-item">home</li>
-            <li class="nav-item">contact</li>
-            <li class="nav-item">sign up</li>
-            <li class="nav-item">sign in</li>
-            <li class="nav-item">sign out</li>
-        </ul>
-    </nav>
-</body>
+            .nav {
+                @apply justify-between items-center;
+                
+                .nav-item {
+                    @apply w-24;
+                }
 
+                .nav-item-hidden {
+                    @apply hidden;
+                }
+            }
+
+            .side-nav {
+                @apply absolute h-full w-2/5 flex-col;
+
+                .side-nav-item {
+                    @apply w-full;
+                }
+            }
+
+            .side-nav-expanded {
+                @apply top-0 right-0;
+            }
+
+            .side-nav-collapsed {
+                @apply top-0 left-full;
+            }
+        </style>
+
+        <script>
+            const expandSideNav = () => {
+                const sideNav = document.querySelector('.side-nav');
+                const navLinks = document.querySelectorAll('.link');
+                navLinks.forEach(navLink => {
+                    navLink.setAttribute('class', 'nav-item-hidden')
+                })
+                sideNav.setAttribute('class', 'side-nav side-nav-expanded')
+            }
+
+            const collapseSideNav = () => {
+                const sideNav = document.querySelector('.side-nav');
+                const navLinks = document.querySelectorAll('.nav-item-hidden');
+                navLinks.forEach(navLink => {
+                    navLink.setAttribute('class', 'link nav-item')
+                })
+                sideNav.setAttribute('class', 'side-nav side-nav-collapsed')
+            }
+        </script>
+    </head>
+
+    <body class="bg-gray-800 text-white overflow-x-hidden">
+        <nav class="nav">
+            <ul class="p-2 w-10 h-10 font-bold bg-cyan-800 rounded-md">
+                GK
+            </ul>
+            <ul class="flex gap-4 w-full justify-end">
+                <li class="link nav-item">home</li>
+                <li class="link nav-item">contact</li>
+                <li class="link nav-item">sign up</li>
+                <li class="link nav-item">sign in</li>
+                <li class="link nav-item">sign out</li>
+                <li class="nav-item" onclick="expandSideNav()">open</li>
+            </ul>
+            <div class="side-nav side-nav-collapsed">
+                <button class="float-left w-10 h-10" onclick="collapseSideNav()">X</button>
+                <ul class="flex flex-col gap-12 mt-12">
+                    <li class="side-nav-item">home</li>
+                    <li class="side-nav-item">contact</li>
+                    <li class="side-nav-item">sign up</li>
+                    <li class="side-nav-item">sign in</li>
+                    <li class="side-nav-item">sign out</li>
+                    <li class="side-nav-item">open</li>
+                </ul>
+            </div>
+        </nav>
+    </body>
 </html>
